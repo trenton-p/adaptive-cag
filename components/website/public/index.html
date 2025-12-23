@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Fictitious Website">
+  <meta name="author" content="Trenton Potgieter">
+
+  <title>ACME News</title>
+
+  <!--- Other Stylesheets-->
+  <link rel="stylsheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/main-page.css" rel="stylesheet">
+
+  <!-- Bootstrap core JavaScript --->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.135.0.min.js"></script>
+
+  <!-- Chatbot styles and JavaScript -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+  <link href="css/chat-page.css" rel="stylesheet">
+  <script src="js/script.js" defer></script>  
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">ACME News</a>
+      <!--- Remove Navbar toggle and replace with Form Button --->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" id="contactUs" href="#contactModal" data-toggle="modal">Contact Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="masthead text-center text-white">
+    <div class="masthead-content">
+      <div class="container">
+        <h1 class="masthead-heading mb-0" style="color:black">ACME NEWS</h1>
+        <h3 class="masthead-subheading mb-0">Your News Now</h3>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contact Form Modal -->
+  <div class="modal fade" id="contactModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="contactModalTitle">Contact Form</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <form role="form" id="contactForm">
+            <div class="form-group">
+              <label for="contactModalEmail"><b>Email Address:</b></label>
+              <input type="text" class="form-control" id="contactModalEmail" placeholder="Enter your email"/>
+            </div>
+            <div class="form-group">
+              <label for="contactModalQuestionText"><b>Message:</b></label>
+              <textarea class="form-control" id="contactModalQuestionText" placeholder="Enter your message"></textarea>
+            </div>
+          </form>
+        </div>
+        <!--- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmationModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!--- Modal Header -->
+        <div class="modal-header">
+          <h4 id="confirmationModalLabel">Confirmation</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">×</button>
+        </div>
+        <!--- Modal Body -->
+        <div class="modal-body"></div>
+        <!--- Modal Footer -->
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-info" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">Close</button> -->
+          <button type="button" class="btn btn-primary submitBtn" data-dismiss="modal" aria-hidden="true" onclick="javascript:window.location.reload()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <figure class="figure">
+              <img src="img/news-delivery.jpeg" class="img-fluid rounded-circle" alt="News Delivery">
+            </figure>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Who are we?</h2>
+            <p>Introducing ACME News, the cutting-edge news website that revolutionizes how you stay informed in today's fast-paced world. With its state-of-the-art technology and global network of reporters, ACME News delivers breaking stories and critical updates to your web browser within seconds of events unfolding. Our team of dedicated journalists works around the clock to ensure you receive the most accurate and comprehensive coverage of local, national, and international news.</p>
+            <p>ACME News utilizes advanced algorithms to personalize your news feed, presenting stories that matter most to you while still keeping you informed about major global events. With its sleek, user-friendly interface and lightning-fast load times, ACME News makes it effortless to stay on top of the latest developments across politics, business, technology, entertainment, and more.</p>
+            <p>Whether you're a busy professional, a curious student, or simply someone who values being well-informed, ACME News is your go-to source for the fastest, most up-to-date, and truly global news experience available online.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <figure class="figure">
+              <img src="img/best-sources.jpeg" class="img-fluid rounded-circle" alt="Best Sources">
+            </figure>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h2 class="display-4">Our Mission!</h2>
+            <p>In today's fast-paced digital world, ACME News stands out as a cutting-edge news aggregation platform committed to delivering the most comprehensive and up-to-date information from an unparalleled array of sources. With a mission to keep readers informed and empowered, ACME News leverages advanced algorithms and artificial intelligence to scour thousands of reputable news outlets, blogs, and social media channels in real-time.</p>
+            <p>This innovative approach ensures that users have access to breaking news, in-depth analyses, and diverse perspectives on current events from local, national, and international sources. By presenting a wide spectrum of viewpoints, ACME News aims to foster critical thinking and encourage readers to form well-rounded opinions on complex issues.</p>
+            <p>The platform's user-friendly interface and customizable features allow individuals to tailor their news consumption experience, making ACME News the go-to destination for those seeking a truly global and multifaceted understanding of the world's most pressing stories.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <figure class="figure">
+              <img src="img/no-fake-news.jpeg" class="img-fluid rounded-circle" alt="Most Accurate">
+            </figure>
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Why us?</h2>
+            <p>ACME News is a groundbreaking news website committed to delivering the most accurate and thoroughly vetted information to its readers. With a team of seasoned journalists and fact-checkers, the site prides itself on its unwavering dedication to truth and transparency.</p>
+            <p>ACME News staunchly opposes the notion of "fake news" and considers it a threat to informed public discourse. Every article undergoes rigorous fact-checking and cross-referencing before publication, with sources clearly cited and verified. The website encourages readers to think critically and provides tools for them to verify information independently.</p>
+            <p>By prioritizing accuracy over sensationalism and speed, ACME News has quickly become a trusted source for those seeking reliable, unbiased news in an era of misinformation and media skepticism.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chatbot UI -->
+  <button class="chatbot-toggler">
+    <span class="material-symbols-rounded">mode_comment</span>
+    <span class="material-symbols-outlined">close</span>
+  </button>
+  <div class="chatbot">
+    <header>
+      <h2>ACME News Assistant</h2>
+      <span class="close-btn material-symbols-outlined">close</span>
+    </header>
+    <ul class="chatbox">
+      <li class="chat incoming">
+        <span class="material-symbols-outlined">smart_toy</span>
+        <p>Hello, I'm your ACME News Assistant. I'm here to help you navigate our news archives. How can I be of assistance today?</p>
+      </li>
+    </ul>
+    <div class="chat-input">
+      <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
+      <span id="send-btn" class="material-symbols-rounded">send</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-black">
+    <div class="container">
+      <p class="m-0 text-center text-white small">Copyright &copy; ACME News 2025</p>
+    </div>
+  </footer>
+
+</body>
+
+<script>
+
+  // Submit the Contact Form to the HTTP API
+  function submitContactForm() {
+    $("#contactModal").modal("hide");
+    var emailAddress = $("#contactModalEmail").val();
+    var questionText = $("#contactModalQuestionText").val();
+    var data = {
+      "email" : emailAddress,
+      "question" : questionText,
+    };
+    // Submit the form
+    $("#contactForm").trigger("reset");
+    $.ajax({
+      type : "POST",
+      url : "/api/contact",
+      dataType : "json",
+      crossDomain : "true",
+      contentType : "application/json; charset=UTF-8",
+      data: JSON.stringify(data),
+      success : function (data) {
+        console.log(data);
+        // Open the confirmation modal
+        $("div.modal-body").html(data.message);
+        $("#confirmationModal").modal("show");
+      },
+      error : function (data, status, err ) {
+        console.log( "Something went wrong", status, err );
+      }
+    });
+  }
+
+</script>
+
+</html>

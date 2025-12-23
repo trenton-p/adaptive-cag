@@ -1,0 +1,5 @@
+boto3
+aws-xray-sdk
+aws-lambda-powertools[aws-sdk]
+langchain==0.3.4
+pinecone==5.3.1

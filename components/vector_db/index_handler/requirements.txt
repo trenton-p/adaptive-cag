@@ -1,0 +1,4 @@
+boto3
+aws-xray-sdk
+aws-lambda-powertools[aws-sdk]
+pinecone==5.3.1

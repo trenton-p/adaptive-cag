@@ -1,0 +1,7 @@
+boto3
+fastapi>=0.104.1
+uvicorn>=0.34.0
+langchain-aws==0.2.4
+langgraph==0.2.38
+langchain==0.3.4
+pinecone==5.3.1
